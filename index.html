@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wiki académica · RAEE en centros de salud comunitarios</title>
+<style>
+:root{--dk:#0b5d3b;--dk2:#07402a;--lt:#8cc63f;--lt2:#eaf5d8;--bg:#fff;--tx:#17261e;--mu:#52645a;--ln:#d5e4d0;--r:10px;color-scheme:light}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font:17px/1.7 Georgia,"Times New Roman",serif;color:var(--tx);background:var(--bg)}
+button,input,select,textarea{font:inherit}
+.ui,button,input,select,textarea,nav,header,label,summary h2{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+[id]{scroll-margin-top:84px}
+:focus-visible{outline:3px solid var(--lt);outline-offset:2px}
+header{position:sticky;top:0;z-index:30;display:flex;gap:.6rem;align-items:center;padding:.6rem 1rem;background:var(--dk);color:#fff;border-bottom:4px solid var(--lt)}
+header .brand{font-weight:700;font-size:1rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:26ch}
+.btn{border:0;border-radius:8px;padding:.5rem .9rem;background:var(--lt);color:var(--dk2);font-weight:600;cursor:pointer}
+.btn:hover{filter:brightness(1.07)}.btn.sec{background:#fff;color:var(--dk);border:1px solid var(--dk)}.btn.sm{padding:.3rem .6rem;font-size:.85rem}
+#menuBtn{display:none}
+.sw{position:relative;flex:1;max-width:520px;margin-left:auto}
+.sw input{width:100%;padding:.5rem .8rem;border-radius:8px;border:0}
+#res{position:absolute;top:110%;left:0;right:0;max-height:60vh;overflow:auto;background:#fff;color:var(--tx);border-radius:var(--r);box-shadow:0 12px 32px #0004;display:none}
+#res.on{display:block}#res p{margin:0;padding:.7rem 1rem;font-size:.9rem;line-height:1.45}
+#res a{display:block;padding:.6rem 1rem;color:inherit;text-decoration:none;border-bottom:1px solid var(--ln);font-size:.9rem;line-height:1.45}
+#res a:hover,#res a:focus{background:var(--lt2)}#res small{color:var(--dk);font-weight:700;display:block}
+mark{background:#d8ee9f;padding:0 2px}
+.wrap{display:flex;min-height:calc(100vh - 62px)}
+aside{width:290px;flex:none;background:var(--dk2);color:#fff;padding:1.2rem 0;position:sticky;top:62px;height:calc(100vh - 62px);overflow:auto}
+aside h4{margin:1.2rem 1.2rem .3rem;font:700 .8rem system-ui;color:var(--lt);letter-spacing:.04em}
+aside a{display:block;padding:.45rem 1.2rem;color:#e6f2e0;text-decoration:none;font-size:.95rem;border-left:4px solid transparent}
+aside a:hover{background:#ffffff14}aside a[aria-current=true]{border-left-color:var(--lt);background:#ffffff1f;font-weight:600}
+main{flex:1;min-width:0;padding:2rem clamp(1rem,4vw,3.5rem) 4rem;max-width:960px}
+.hero{background:linear-gradient(135deg,var(--dk),var(--dk2));color:#fff;border-radius:16px;padding:2rem;border-left:10px solid var(--lt)}
+.hero h1{margin:0 0 .5rem;font-size:clamp(1.6rem,4vw,2.4rem);line-height:1.2}.hero p{margin:0;color:#dcecd2;font-family:system-ui,sans-serif;font-size:.95rem}
+.toc{margin:1.5rem 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:.7rem;padding:0;list-style:none}
+.toc a{display:block;height:100%;padding:.8rem 1rem;border:1px solid var(--ln);border-left:5px solid var(--lt);border-radius:var(--r);text-decoration:none;color:var(--dk);font:600 .95rem system-ui}
+.toc a:hover{background:var(--lt2)}
+.tools{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+details.sec{border:1px solid var(--ln);border-radius:14px;margin:1rem 0;background:#fff}
+details.sec>summary{cursor:pointer;padding:.9rem 1.2rem;list-style:none;background:var(--lt2);border-radius:14px;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+details.sec[open]>summary{border-radius:14px 14px 0 0;border-bottom:3px solid var(--lt)}
+summary::-webkit-details-marker{display:none}
+summary h2{margin:0;font-size:1.2rem;color:var(--dk2)}summary::after{content:"+";font:700 1.4rem system-ui;color:var(--dk)}details[open]>summary::after{content:"–"}
+.body{padding:.5rem 1.4rem 1.2rem}.body p{text-align:justify;hyphens:auto}.body h3{color:var(--dk);font:700 1.05rem system-ui;margin:1.4rem 0 .3rem}
+.body li{margin:.5rem 0}
+details.alt{border:1px solid var(--ln);border-radius:var(--r);margin:.6rem 0}details.alt>summary{padding:.7rem 1rem;cursor:pointer;font:600 .95rem/1.4 system-ui;color:var(--dk2);display:block}
+details.alt>summary::after{content:none}details.alt[open]>summary{background:var(--lt2)}details.alt p{margin:.6rem 1rem}.nodo{border-left:4px solid var(--lt);padding-left:.8rem}
+.hit{animation:hit 1.8s}@keyframes hit{0%,60%{background:#e6f5bd}}
+form{display:grid;gap:.7rem;margin:.8rem 0}label{display:grid;gap:.2rem;font-size:.9rem;font-weight:600;color:var(--dk2)}
+input,select,textarea{padding:.55rem .7rem;border:1px solid #9db8a6;border-radius:8px;background:#fff;color:var(--tx)}
+.list{list-style:none;padding:0;font:.9rem/1.5 system-ui}.list li{border:1px solid var(--ln);border-radius:8px;padding:.6rem .8rem;display:flex;justify-content:space-between;gap:1rem;align-items:flex-start}
+.list b{display:block;color:var(--dk)}
+#top{position:fixed;right:1rem;bottom:1rem;z-index:20;box-shadow:0 4px 14px #0003;display:none}#top.on{display:block}
+footer{margin-top:2rem;font:.85rem system-ui;color:var(--mu)}
+@media(max-width:860px){#menuBtn{display:block}aside{position:fixed;left:0;top:62px;z-index:25;transform:translateX(-100%);transition:transform .25s}aside.open{transform:none}header .brand{display:none}.body p{text-align:left}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="ui">
+<button class="btn" id="menuBtn" aria-expanded="false" aria-controls="side"></button>
+<span class="brand" id="brand"></span>
+<div class="sw"><input id="q" type="search" autocomplete="off" aria-controls="res"><div id="res" role="region" aria-live="polite"></div></div>
+<button class="btn" id="lang"></button>
+</header>
+<div class="wrap">
+<aside id="side"><nav id="nav"></nav></aside>
+<main id="main"></main>
+</div>
+<button class="btn" id="top"></button>
+<script>
+"use strict";
+/* ===== CONTENIDO (fiel al documento KIM.docx) ===== */
+const D={es:[
+{id:"s1",cat:0,t:"1. Identificación del problema",b:[
+"El problema que asumimos como reto es la **deficiente gestión de residuos de aparatos eléctricos y electrónicos (RAEE) hospitalarios y de baja complejidad** en centros de salud comunitarios, afectando el medio ambiente y la salud pública local."]},
+{id:"s2",cat:0,t:"2. Descripción del problema",b:[
+"Vivimos en una época de constante aceleración tecnológica donde el siglo XXI nos bombardea con la adquisición masiva de equipos médicos y dispositivos digitales de uso cotidiano en el sector salud (computadoras, tensiómetros digitales, glucómetros, tabletas de historias clínicas electrónicas, entre otros). Sin embargo, este vertiginoso avance ha traído consigo una crisis invisible pero latente en los entornos comunitarios y de atención básica: la acumulación y el manejo inadecuado de los Residuos de Aparatos Eléctricos y Electrónicos (RAEE).",
+"En nuestra localidad, diversos centros de salud de baja complejidad, consultorios particulares e incluso hogares que manejan pacientes domiciliarios enfrentan un dilema crítico. Cuando estos aparatos cumplen su ciclo de vida útil o sufren obsolescencia tecnológica, terminan siendo desechados junto con la basura común, o bien, almacenados en depósitos improvisados dentro de las mismas instituciones prestadoras de servicios de salud (IPS). Esta situación vulnera directamente el bienestar del **ser humano**. Por un lado, expone al personal administrativo, asistencial y a los pacientes a sustancias altamente tóxicas como plomo, mercurio, cadmio y retardantes de llama bromados, liberados cuando estos aparatos se degradan o son manipulados sin protección. Por otro lado, impacta la salud mental y física de la comunidad al generar un entorno de insalubridad y estrés ambiental.",
+"Desde la perspectiva del **siglo XXI**, esta problemática evidencia una paradoja tecnológica: la misma digitalización y modernización que busca mejorar la oportunidad y calidad de los diagnósticos en salud está generando una estela de contaminación tóxica debido a la falta de infraestructura y cultura de reciclaje tecnológico especializado. Las normativas actuales a menudo se quedan en el papel para los pequeños centros de salud, que carecen de presupuestos o de una guía clara para gestionar estos residuos de forma segura.",
+"Finalmente, al conectar este escenario con los **Objetivos de Desarrollo Sostenible (ODS)**, encontramos una colisión directa con varias metas globales. En primer lugar, choca con el **ODS 3 (Salud y Bienestar)**, ya que la exposición a metales pesados derivados de los RAEE contamina el aire, el suelo y las fuentes hídricas, provocando enfermedades respiratorias, neurológicas y dermatológicas en la población circundante. En segundo lugar, vulnera el **ODS 12 (Producción y Consumo Responsables)** al evidenciar una economía lineal insostenible (\"comprar, usar y desechar\") que ignora el reaprovechamiento de materiales valiosos. Por último, reta el **ODS 11 (Ciudades y Comunidades Sostenibles)** y el **ODS 13 (Acción por el Clima)**, recordándonos que como futuros administradores en salud no podemos gestionar hospitales eficientes si ignoramos el impacto ambiental que nuestra propia operación genera en el planeta."]},
+{id:"s3",cat:0,t:"3. Sustento del problema",b:[
+"Abordar la gestión inadecuada de los RAEE en el sector salud no es solo una cuestión de cumplimiento ambiental, sino una necesidad ética, social y administrativa ineludible. Es necesario intervenir en este problema porque la tendencia de digitalización en salud va en aumento, y de no establecer protocolos tempranos en las instituciones de baja complejidad, nos enfrentaremos a una crisis sanitaria superpuesta a la carga de enfermedad tradicional de nuestras comunidades.",
+"El **mundo del saber**, enmarcado en la academia y en nuestra formación profesional como administradores en salud, posee las herramientas conceptuales, científicas y técnicas para dar respuesta a esta problemática. A través de la planeación estratégica, la gestión de la calidad, la ingeniería sanitaria y la optimización de procesos, podemos diseñar rutas logísticas claras para la recolección, clasificación y disposición final de estos residuos peligrosos. El conocimiento universitario no debe quedarse en las aulas ni en los libros; debe traducirse en propuestas prácticas que articulen a las IPS con gestores ambientales autorizados, transformando un pasivo ambiental en un proceso seguro y regulado.",
+"Asimismo, es fundamental abordar este problema desde el **humanismo** y, más específicamente, desde el **Humanismo Digital**. En la actualidad, el centro de la atención en salud no puede ser únicamente la enfermedad del paciente ni la eficiencia financiera de la institución; debe ser la vida en todas sus dimensiones, incluyendo el hábitat donde cohabitamos. El humanismo digital nos convoca a reflexionar críticamente sobre nuestra relación con la tecnología: no podemos celebrar los beneficios de la era digital y la telemedicina ignorando el costo ecológico y humano que pagan las poblaciones vulnerables donde se desechan estos dispositivos obsoletos.",
+"Como lo plantea la reflexión sobre la felicidad y el bienestar común, el objetivo del ser humano no radica en la acumulación desmedida de bienes tecnológicos o en la eficiencia ciega de los procesos institucionales, sino en la transformación positiva de la vida propia y de la comunidad. Cuidar de nuestro entorno a través de una administración en salud consciente y sostenible es un acto de empatía intergeneracional. Este reto nos invita a demostrar que el conocimiento adquirido en Areandina tiene un propósito transformador: formar profesionales capaces de equilibrar la innovación tecnológica con la defensa de la vida y la dignidad humana."]},
+{id:"s4",cat:1,t:"4. Causas y consecuencias",b:[
+{h:"Causas del problema"},
+{ul:["**Ausencia de protocolos específicos:** Muchas IPS de baja complejidad no cuentan con manuales internos ni rutas claras para la baja, almacenamiento temporal y entrega de equipos tecnológicos obsoletos.",
+"**Desconocimiento normativo:** Falta de capacitación al personal administrativo y de salud sobre la peligrosidad de los componentes de los RAEE y la legislación ambiental vigente (como el marco de gestión de residuos peligrosos).",
+"**Cultura de consumo y descarte:** Predominio de un modelo lineal donde se adquieren nuevos dispositivos sin planificar su disposición final al término de su vida útil.",
+"**Falta de articulación local:** Escasa vinculación entre los pequeños centros de salud y las empresas gestoras de residuos tecnológicos autorizadas debido a supuestos costos elevados o desconocimiento de alianzas estratégicas."]},
+{h:"Consecuencias del problema"},
+{ul:["**Sociales:** Aumento de riesgos en la salud de los trabajadores de la salud, pacientes y recicladores informales debido a la exposición a sustancias tóxicas como plomo y mercurio.",
+"**Económicas:** Posibles sanciones legales, multas institucionales y sobrecostos por la gestión inadecuada o acumulación desordenada de equipos en desuso dentro de las instalaciones.",
+"**Ambientales:** Contaminación severa de fuentes hídricas y suelos locales por la filtración de metales pesados provenientes de circuitos impresos y baterías de dispositivos médicos descartados en la basura común.",
+"**Políticas:** Debilidad en el cumplimiento de los indicadores de sostenibilidad institucional y deterioro de la imagen pública de los centros de salud ante la comunidad y los entes de control territorial."]}]},
+{id:"s5",cat:2,t:"5. Alternativas de solución",b:[
+"Para dar respuesta a este reto, proponemos 4 alternativas de solución, articuladas directamente con los nodos del **Sello Transformador Arandino** estudiados en el eje 2:",
+{alts:[
+["Campaña de concientización y alfabetización ambiental (\"Tecnología con Conciencia\")","Desarrollar talleres educativos y piezas comunicativas dirigidas al personal de las IPS y a la comunidad usuaria sobre los riesgos de los RAEE y la correcta separación en la fuente.","*Nodo relacionado:* **Competencias lingüísticas**, ya que exige una comunicación clara, persuasiva y adaptada a diferentes públicos para transmitir un mensaje de alto impacto social."],
+["Diseño de un prototipo de Ruta Logística de Reciclaje Tecnológico (Eco-Ruta Salud)","Crear un plan piloto de recolección interna y un formato de entrega programada de equipos obsoletos articulado con gestores ambientales certificados de la región.","*Nodo relacionado:* **Creatividad, innovación y emprendimiento**, al proponer un modelo práctico, novedoso y de bajo costo para resolver una falla operativa tradicional en centros de baja complejidad."],
+["Jornada comunitaria de recolección \"Punto Verde Hospitalario\"","Establecer un espacio temporal en el centro de salud donde la comunidad pueda llevar sus pequeños dispositivos médicos y electrónicos en desuso para evitar que lleguen a la basura común.","*Nodo relacionado:* **Humanismo Digital**, puesto que nos invita a reflexionar sobre nuestra responsabilidad ética frente al impacto de la tecnología, priorizando el cuidado de la vida humana y del planeta por encima del consumo desmedido."],
+["Creación de una guía digital interactiva para administradores en salud","Desarrollar un documento digital de fácil acceso (infografía interactiva o app básica) con el paso a paso normativo y operativo para la gestión de RAEE en microempresas y centros de salud comunitarios.","*Nodo relacionado:* **Humanismo Digital** y **Competencias lingüísticas**, combinando el uso ético de las herramientas tecnológicas de la información con una redacción clara, cohesiva y orientada al servicio de la gestión en salud."]]}]}
+],en:[
+{id:"s1",cat:0,t:"1. Problem identification",b:[
+"The problem we take on as our challenge is the **deficient management of hospital and low-complexity waste electrical and electronic equipment (WEEE; RAEE in Spanish)** in community health centers, affecting the environment and local public health."]},
+{id:"s2",cat:0,t:"2. Problem description",b:[
+"We live in an era of constant technological acceleration in which the 21st century bombards us with the massive acquisition of medical equipment and everyday digital devices in the health sector (computers, digital blood pressure monitors, glucometers, tablets for electronic health records, among others). However, this dizzying progress has brought with it an invisible but latent crisis in community and primary care settings: the accumulation and improper handling of Waste Electrical and Electronic Equipment (WEEE).",
+"In our locality, various low-complexity health centers, private practices and even homes caring for home-based patients face a critical dilemma. When these devices reach the end of their useful life or become technologically obsolete, they end up being thrown out with ordinary trash, or stored in improvised depots inside the very health service provider institutions (IPS). This situation directly undermines the well-being of the **human being**. On the one hand, it exposes administrative and care staff and patients to highly toxic substances such as lead, mercury, cadmium and brominated flame retardants, released when these devices degrade or are handled without protection. On the other hand, it affects the mental and physical health of the community by creating an unsanitary environment and environmental stress.",
+"From the perspective of the **21st century**, this problem reveals a technological paradox: the very digitalization and modernization that seeks to improve the timeliness and quality of health diagnoses is generating a trail of toxic contamination due to the lack of infrastructure and of a culture of specialized technology recycling. Current regulations often remain on paper for small health centers, which lack budgets or a clear guide to manage this waste safely.",
+"Finally, when connecting this scenario with the **Sustainable Development Goals (SDGs)**, we find a direct collision with several global goals. First, it clashes with **SDG 3 (Good Health and Well-being)**, since exposure to heavy metals from WEEE contaminates air, soil and water sources, causing respiratory, neurological and dermatological diseases in the surrounding population. Second, it undermines **SDG 12 (Responsible Consumption and Production)** by exposing an unsustainable linear economy (\"buy, use and discard\") that ignores the reuse of valuable materials. Lastly, it challenges **SDG 11 (Sustainable Cities and Communities)** and **SDG 13 (Climate Action)**, reminding us that as future health administrators we cannot run efficient hospitals if we ignore the environmental impact that our own operation has on the planet."]},
+{id:"s3",cat:0,t:"3. Rationale for the problem",b:[
+"Addressing the improper management of WEEE in the health sector is not only a matter of environmental compliance, but an unavoidable ethical, social and administrative necessity. Intervening in this problem is necessary because the trend toward digitalization in health is growing, and if early protocols are not established in low-complexity institutions, we will face a health crisis superimposed on the traditional disease burden of our communities.",
+"The **world of knowledge**, framed within academia and our professional training as health administrators, has the conceptual, scientific and technical tools to respond to this problem. Through strategic planning, quality management, sanitary engineering and process optimization, we can design clear logistics routes for the collection, classification and final disposal of this hazardous waste. University knowledge must not remain in classrooms and books; it must translate into practical proposals that connect IPS with authorized environmental managers, turning an environmental liability into a safe and regulated process.",
+"It is likewise essential to approach this problem from **humanism** and, more specifically, from **Digital Humanism**. Today, the focus of health care cannot be solely the patient's disease or the institution's financial efficiency; it must be life in all its dimensions, including the habitat we share. Digital humanism calls on us to reflect critically on our relationship with technology: we cannot celebrate the benefits of the digital age and telemedicine while ignoring the ecological and human cost paid by the vulnerable populations where these obsolete devices are discarded.",
+"As the reflection on happiness and the common good suggests, the goal of the human being does not lie in the excessive accumulation of technological goods or in the blind efficiency of institutional processes, but in the positive transformation of one's own life and that of the community. Caring for our environment through conscious and sustainable health administration is an act of intergenerational empathy. This challenge invites us to show that the knowledge acquired at Areandina has a transformative purpose: to train professionals capable of balancing technological innovation with the defense of life and human dignity."]},
+{id:"s4",cat:1,t:"4. Causes and consequences",b:[
+{h:"Causes of the problem"},
+{ul:["**Absence of specific protocols:** Many low-complexity IPS have no internal manuals or clear routes for decommissioning, temporary storage and delivery of obsolete technological equipment.",
+"**Lack of regulatory knowledge:** Lack of training for administrative and health staff on the hazardousness of WEEE components and on current environmental legislation (such as the hazardous waste management framework).",
+"**Culture of consumption and disposal:** Predominance of a linear model in which new devices are acquired without planning their final disposal at the end of their useful life.",
+"**Lack of local coordination:** Little connection between small health centers and authorized technology waste management companies due to supposed high costs or unawareness of strategic alliances."]},
+{h:"Consequences of the problem"},
+{ul:["**Social:** Increased health risks for health workers, patients and informal recyclers due to exposure to toxic substances such as lead and mercury.",
+"**Economic:** Possible legal sanctions, institutional fines and extra costs from improper management or disorderly accumulation of unused equipment inside the facilities.",
+"**Environmental:** Severe contamination of local water sources and soils from the leaching of heavy metals from printed circuits and batteries of medical devices discarded in ordinary trash.",
+"**Political:** Weakness in meeting institutional sustainability indicators and damage to the public image of health centers before the community and territorial oversight bodies."]}]},
+{id:"s5",cat:2,t:"5. Solution alternatives",b:[
+"To respond to this challenge, we propose 4 solution alternatives, directly linked to the nodes of the **Arandino Transformative Seal** studied in axis 2:",
+{alts:[
+["Awareness and environmental literacy campaign (\"Technology with Conscience\")","Develop educational workshops and communication materials aimed at IPS staff and the user community about the risks of WEEE and proper separation at the source.","*Related node:* **Linguistic competencies**, since it requires clear, persuasive communication adapted to different audiences in order to convey a message of high social impact."],
+["Design of a prototype Technology Recycling Logistics Route (Eco-Ruta Salud)","Create a pilot plan for internal collection and a scheduled-delivery format for obsolete equipment, coordinated with certified environmental managers in the region.","*Related node:* **Creativity, innovation and entrepreneurship**, by proposing a practical, novel and low-cost model to solve a traditional operational failure in low-complexity centers."],
+["Community collection day \"Hospital Green Point\"","Set up a temporary space at the health center where the community can bring their small unused medical and electronic devices to keep them from reaching ordinary trash.","*Related node:* **Digital Humanism**, since it invites us to reflect on our ethical responsibility regarding the impact of technology, prioritizing the care of human life and the planet over excessive consumption."],
+["Creation of an interactive digital guide for health administrators","Develop an easily accessible digital document (interactive infographic or basic app) with the regulatory and operational step-by-step for WEEE management in micro-enterprises and community health centers.","*Related node:* **Digital Humanism** and **Linguistic competencies**, combining the ethical use of information technology tools with clear, cohesive writing oriented to serving health management."]]}]}
+]};
+/* ===== INTERFAZ ===== */
+const U={es:{
+title:"RAEE en centros de salud comunitarios",sub:"Wiki académica interactiva · Fundación Universitaria del Área Andina (Areandina)",
+ph:"Buscar en la wiki…",lang:"English",menu:"Menú",toc:"Índice de contenidos",top:"Volver al inicio",expand:"Expandir todo",collapse:"Contraer todo",
+cats:["Planteamiento","Análisis","Propuesta","Recursos"],bib:"Bibliografía",par:"Participación",
+none:"Sin resultados para",found:"resultado(s) en",
+bibTxt:["El documento original (KIM.docx) no incluye bibliografía, referencias formales, citas con fuente ni enlaces. Para conservar íntegramente el contenido, esta sección no agrega referencias que no existan en el documento.","Elementos que el documento menciona sin fuente explícita:"],
+bibList:["Objetivos de Desarrollo Sostenible (ODS 3, 11, 12 y 13).","Sello Transformador Arandino y sus nodos (eje 2): Competencias lingüísticas; Creatividad, innovación y emprendimiento; Humanismo Digital.","«La reflexión sobre la felicidad y el bienestar común» (mencionada en la sección 3, sin autor ni fuente).","Marco de gestión de residuos peligrosos y normativa ambiental vigente (mencionados sin cita)."],
+bibBtn:"Proponer una referencia",
+cm:"Comentarios",cmName:"Nombre (opcional)",cmTxt:"Comentario",cmSend:"Agregar comentario",
+pr:"Proponer información nueva",prSec:"Sección relacionada",prTit:"Título de la propuesta",prTxt:"Información propuesta",prSrc:"Fuente o enlace (opcional)",prSend:"Agregar propuesta",
+fl:"Cargar archivos",flHint:"Seleccione archivos para revisarlos aquí. No se suben a ningún servidor.",flClr:"Quitar todos",rm:"Quitar",
+empty:"Aún no hay elementos en esta sesión.",gen:"General",
+about:"El título de la wiki y los textos de la interfaz fueron elaborados para esta plataforma; el contenido académico proviene íntegramente del documento."},
+en:{
+title:"WEEE in community health centers",sub:"Interactive academic wiki · Fundación Universitaria del Área Andina (Areandina)",
+ph:"Search the wiki…",lang:"Español",menu:"Menu",toc:"Table of contents",top:"Back to top",expand:"Expand all",collapse:"Collapse all",
+cats:["Framing","Analysis","Proposal","Resources"],bib:"Bibliography",par:"Participation",
+none:"No results for",found:"result(s) for",
+bibTxt:["The original document (KIM.docx) includes no bibliography, formal references, sourced citations or links. To preserve the content intact, this section adds no references that do not exist in the document.","Items the document mentions without an explicit source:"],
+bibList:["Sustainable Development Goals (SDG 3, 11, 12 and 13).","Arandino Transformative Seal and its nodes (axis 2): Linguistic competencies; Creativity, innovation and entrepreneurship; Digital Humanism.","\"The reflection on happiness and the common good\" (mentioned in section 3, with no author or source).","Hazardous waste management framework and current environmental legislation (mentioned without citation)."],
+bibBtn:"Suggest a reference",
+cm:"Comments",cmName:"Name (optional)",cmTxt:"Comment",cmSend:"Add comment",
+pr:"Propose new information",prSec:"Related section",prTit:"Proposal title",prTxt:"Proposed information",prSrc:"Source or link (optional)",prSend:"Add proposal",
+fl:"Upload files",flHint:"Select files to review them here. They are not uploaded to any server.",flClr:"Remove all",rm:"Remove",
+empty:"No items in this session yet.",gen:"General",
+about:"The wiki title and interface texts were written for this platform; the academic content comes entirely from the document."}};
+/* ===== UTILIDADES ===== */
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const md=s=>esc(s).replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>").replace(/\*(.+?)\*/g,"<em>$1</em>");
+const plain=s=>s.replace(/\*/g,"");
+const norm=s=>plain(s).normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+const RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
+let L="es";try{L=localStorage.getItem("lang")||(navigator.language.startsWith("en")?"en":"es")}catch(e){}
+const st={comments:[],props:[],files:[]};let index=[];
+/* ===== RENDER ===== */
+function render(){
+ const u=U[L],d=D[L];document.documentElement.lang=L;document.title=u.title;index=[];
+ $("#brand").textContent=u.title;$("#q").placeholder=u.ph;$("#q").setAttribute("aria-label",u.ph);
+ $("#lang").textContent=u.lang;$("#lang").setAttribute("aria-label",L==="es"?"Switch to English":"Cambiar a español");
+ $("#menuBtn").textContent="☰ "+u.menu;$("#top").textContent="↑ "+u.top;
+ const items=[...d.map((s,i)=>({id:s.id,t:s.t,cat:s.cat})),{id:"bib",t:u.bib,cat:3},{id:"par",t:u.par,cat:3}];
+ $("#nav").innerHTML=`<a href="#inicio">${esc(u.top)}</a>`+u.cats.map((c,ci)=>`<h4>${esc(c)}</h4>`+items.filter(x=>x.cat===ci).map(x=>`<a href="#${x.id}">${esc(x.t)}</a>`).join("")).join("");
+ let h=`<section id="inicio" class="hero"><h1>${esc(u.title)}</h1><p>${esc(u.sub)}</p></section>
+ <h2 class="ui" style="font-size:1.1rem;color:var(--dk2);margin:1.5rem 0 0">${esc(u.toc)}</h2><ul class="toc">${items.map(x=>`<li><a href="#${x.id}">${esc(x.t)}</a></li>`).join("")}</ul>
+ <div class="tools ui"><button class="btn sm" data-all="1">${esc(u.expand)}</button><button class="btn sm sec" data-all="0">${esc(u.collapse)}</button></div>`;
+ d.forEach((s,i)=>{h+=`<details class="sec" id="${s.id}" open><summary><h2>${esc(s.t)}</h2></summary><div class="body">`;
+  s.b.forEach((b,j)=>{const id=`b${i}-${j}`;
+   if(typeof b==="string"){h+=`<p id="${id}">${md(b)}</p>`;index.push({s:s.id,id,t:b})}
+   else if(b.h){h+=`<h3 id="${id}">${esc(b.h)}</h3>`}
+   else if(b.ul){h+=`<ul>`+b.ul.map((x,k)=>{index.push({s:s.id,id:`${id}-${k}`,t:x});return`<li id="${id}-${k}">${md(x)}</li>`}).join("")+`</ul>`}
+   else if(b.alts){h+=b.alts.map((a,k)=>{index.push({s:s.id,id:`${id}-${k}`,t:a.join(" ")});return`<details class="alt" id="${id}-${k}"><summary>${md(a[0])}</summary><p>${md(a[1])}</p><p class="nodo">${md(a[2])}</p></details>`}).join("")}});
+  h+=`</div></details>`});
+ const opts=`<option value="">${esc(u.gen)}</option>`+d.map(s=>`<option>${esc(s.t)}</option>`).join("");
+ h+=`<details class="sec" id="bib" open><summary><h2>${esc(u.bib)}</h2></summary><div class="body"><p>${esc(u.bibTxt[0])}</p><p>${esc(u.bibTxt[1])}</p><ul>${u.bibList.map(x=>`<li>${esc(x)}</li>`).join("")}</ul><button class="btn ui" id="bibBtn">${esc(u.bibBtn)}</button></div></details>
+ <details class="sec" id="par" open><summary><h2>${esc(u.par)}</h2></summary><div class="body ui">
+  <h3>${esc(u.cm)}</h3><form id="fc"><label>${esc(u.cmName)}<input name="n" maxlength="80"></label><label>${esc(u.cmTxt)}<textarea name="t" rows="3" required></textarea></label><button class="btn" style="justify-self:start">${esc(u.cmSend)}</button></form><ul class="list" id="lc"></ul>
+ <h3>${esc(u.pr)}</h3><form id="fp"><label>${esc(u.prSec)}<select name="s" id="ps">${opts}</select></label><label>${esc(u.prTit)}<input name="ti" required maxlength="120"></label><label>${esc(u.prTxt)}<textarea name="t" rows="4" required></textarea></label><label>${esc(u.prSrc)}<input name="src" maxlength="300"></label><button class="btn" style="justify-self:start">${esc(u.prSend)}</button></form><ul class="list" id="lp"></ul>
+ <h3>${esc(u.fl)}</h3><p>${esc(u.flHint)}</p><input type="file" id="ff" multiple aria-label="${esc(u.fl)}"><ul class="list" id="lf"></ul></div></details>
+ <footer><p>${esc(u.about)}</p><button class="btn sec sm ui" data-go="inicio">${esc(u.top)}</button></footer>`;
+ $("#main").innerHTML=h;bindForms();lists();spy();
+}
+/* ===== PARTICIPACIÓN (solo en memoria) ===== */
+function lists(){const u=U[L],e=`<li>${esc(u.empty)}</li>`;
+ $("#lc").innerHTML=st.comments.map((c,i)=>`<li><div><b>${esc(c.n||"—")}</b>${esc(c.t)}</div><button class="btn sm sec" data-rm="comments:${i}">${esc(u.rm)}</button></li>`).join("")||e;
+ $("#lp").innerHTML=st.props.map((c,i)=>`<li><div><b>${esc(c.ti)}</b>${esc(c.s||u.gen)}<br>${esc(c.t)}${c.src?`<br>${esc(c.src)}`:""}</div><button class="btn sm sec" data-rm="props:${i}">${esc(u.rm)}</button></li>`).join("")||e;
+ $("#lf").innerHTML=st.files.map((f,i)=>`<li><div><b>${esc(f.name)}</b>${(f.size/1024).toFixed(1)} KB · ${esc(f.type||"—")}</div><button class="btn sm sec" data-rm="files:${i}">${esc(u.rm)}</button></li>`).join("")||e}
+function bindForms(){
+ $("#fc").onsubmit=e=>{e.preventDefault();const f=new FormData(e.target);st.comments.push({n:f.get("n"),t:f.get("t"),at:new Date().toISOString()});e.target.reset();lists()};
+ $("#fp").onsubmit=e=>{e.preventDefault();const f=new FormData(e.target);st.props.push({s:f.get("s"),ti:f.get("ti"),t:f.get("t"),src:f.get("src"),at:new Date().toISOString()});e.target.reset();lists()};
+ $("#ff").onchange=e=>{st.files.push(...e.target.files);e.target.value="";lists()};
+ $("#bibBtn").onclick=()=>{go("fp");$("#fp [name=ti]").focus({preventScroll:true})};}
+/* ===== NAVEGACIÓN ===== */
+function go(id){const el=document.getElementById(id);if(!el)return;let d=el.closest("details");while(d){d.open=true;d=d.parentElement&&d.parentElement.closest("details")}
+ el.scrollIntoView({behavior:RM?"auto":"smooth",block:"start"});el.classList.add("hit");setTimeout(()=>el.classList.remove("hit"),1800)}
+document.addEventListener("click",e=>{
+ const a=e.target.closest("a[href^='#']");if(a){e.preventDefault();go(a.getAttribute("href").slice(1));closeMenu();$("#res").classList.remove("on");return}
+ const g=e.target.closest("[data-go]");if(g)return go(g.dataset.go);
+ const t=e.target.closest("[data-all]");if(t)$$("details").forEach(d=>d.open=t.dataset.all==="1");
+ const r=e.target.closest("[data-rm]");if(r){const[k,i]=r.dataset.rm.split(":");st[k].splice(+i,1);lists()}
+ if(!e.target.closest(".sw"))$("#res").classList.remove("on")});
+function closeMenu(){$("#side").classList.remove("open");$("#menuBtn").setAttribute("aria-expanded","false")}
+$("#menuBtn").onclick=()=>{const o=$("#side").classList.toggle("open");$("#menuBtn").setAttribute("aria-expanded",o)};
+$("#top").onclick=()=>go("inicio");
+$("#lang").onclick=()=>{L=L==="es"?"en":"es";try{localStorage.setItem("lang",L)}catch(e){}render();search()};
+addEventListener("scroll",()=>$("#top").classList.toggle("on",scrollY>500),{passive:true});
+let io;function spy(){if(!("IntersectionObserver" in window))return;io&&io.disconnect();io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting)$$("#nav a").forEach(a=>a.setAttribute("aria-current",a.getAttribute("href")==="#"+x.target.id))}),{rootMargin:"-80px 0px -65% 0px"});$$("details.sec").forEach(s=>io.observe(s))}
+/* ===== BUSCADOR ===== */
+function search(){const q=norm($("#q").value.trim()),box=$("#res"),u=U[L];
+ if(!q){box.classList.remove("on");box.innerHTML="";return}
+ const sec=Object.fromEntries(D[L].map(s=>[s.id,s.t]));
+ const hits=index.map(x=>({x,k:norm(x.t).indexOf(q)})).filter(h=>h.k>-1);
+ box.innerHTML=hits.length?`<p>${hits.length} ${esc(u.found)} «${esc($("#q").value.trim())}»</p>`+hits.slice(0,25).map(({x,k})=>{const t=plain(x.t),a=Math.max(0,k-50),b=k+q.length;
+  return`<a href="#${x.id}"><small>${esc(sec[x.s])}</small>${a?"…":""}${esc(t.slice(a,k))}<mark>${esc(t.slice(k,b))}</mark>${esc(t.slice(b,b+70))}…</a>`}).join(""):`<p>${esc(u.none)} «${esc($("#q").value.trim())}»</p>`;
+ box.classList.add("on")}
+$("#q").addEventListener("input",search);$("#q").addEventListener("keydown",e=>{if(e.key==="Escape"){$("#res").classList.remove("on");e.target.blur()}});
+render();
+</script>
+</body>
+</html>
